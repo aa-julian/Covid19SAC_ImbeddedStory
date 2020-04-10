@@ -7,7 +7,11 @@ var app = express();
 
 const PORT = process.env.PORT || 4000 ;	
 
-var redirecturi = 'http://localhost:' + PORT + '/callback';
+
+//'http://localhost:' 
+//var redirecturi = '/'+ PORT + '/callback';
+
+var redirecturi =  "http://" + os.Getenv("covid19-sac-analytics") + "herokuapp.com/auth/heroku/callback"
 
 // __dirname is a global object that contains the name of the root directory 
 app.use(express.static(__dirname));
@@ -49,7 +53,7 @@ app.use('/authorizationcode', function (req, res) {
 	console.log("inside authorizationcode");
 
 	var authorizationUri = oauth2.authorizationCode.authorizeURL({
-		redirect_uri: redirecturi
+		redirect_uri: redirecturi// '/callback'
 
 	});
 
