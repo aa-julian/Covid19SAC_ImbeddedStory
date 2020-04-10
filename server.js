@@ -5,7 +5,8 @@ var oauth2 = require('simple-oauth2');
 var path = require('path');
 var app = express();
 
-const PORT = 4000;										
+const PORT = process.env.PORT || 4000 ;	
+									
 var redirecturi = 'http://localhost:' + PORT + '/callback';
 
 // __dirname is a global object that contains the name of the root directory 
