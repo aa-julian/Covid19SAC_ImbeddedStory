@@ -1,0 +1,70 @@
+<html>
+
+<head>
+	<title>Covid-19 Analytics Dashboard</title>
+	<style>
+		iframe {
+			width: 100%;
+			/* height: 900px; */
+            height: 100%
+		}
+	</style>
+</head>
+
+<body>
+	
+	<iframe id="attachframe"></iframe>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<script>
+
+		
+
+            var url = "https://k274e6.us2.sapbusinessobjects.cloud/sap/fpa/ui/tenants/274e6/app.html#;view_id=story;storyId=5C43D2F0F96D6680C00558437FD6D6B9"    
+			var data = {};
+
+			// 1.step: get the access token
+			$.ajax({
+				type: 'GET',
+				data: JSON.stringify(data),
+				contentType: 'application/json',
+				url: '/getToken',
+				success: function (data) {
+					console.log('success');
+					console.log(JSON.stringify(data));
+
+					var token_details = JSON.parse(data);
+
+					var postheaders = {
+						'Authorization': 'Bearer ' + token_details.access_token,
+					};
+
+					// 2. step: get the SAC story
+					$.ajax({
+						type: 'GET',
+						url: url,
+						contentType: 'application/json',
+						headers: postheaders,
+						xhrFields: {
+							withCredentials: true
+						},
+						success: function (data, status, settings) {
+							console.log(settings.getResponseHeader("X-CSRF-Token"));
+							console.log(JSON.stringify(data));
+
+							$("iframe").attr("src", url);
+						},
+
+						error: function (xhr, ajaxOptions, thrownError) {
+							alert(xhr.status);
+							alert(thrownError);
+						}
+					});
+				}
+			});
+		
+
+	</script>
+</body>
+
+</html>
