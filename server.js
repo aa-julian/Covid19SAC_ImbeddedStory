@@ -7,10 +7,9 @@ var app = express();
 
 const PORT = process.env.PORT || 4000 ;	
 
-
 //'http://localhost:' 
 //var redirecturi = '/'+ PORT + '/callback';
-var redirecturi = 'http://covid19-sac-analytics.herokuapp.com/auth/heroku/callback'//'/callback'
+var redirecturi = 'http://covid19-sac-analytics.herokuapp.com:' + PORT + '/auth/heroku/callback'
 
 //var redirecturi =  "http://" + os.Getenv("covid19-sac-analytics") + "herokuapp.com/auth/heroku/callback"
 
