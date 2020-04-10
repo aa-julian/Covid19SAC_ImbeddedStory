@@ -6,7 +6,7 @@ var path = require('path');
 var app = express();
 
 const PORT = process.env.PORT || 4000 ;	
-									
+
 var redirecturi = 'http://localhost:' + PORT + '/callback';
 
 // __dirname is a global object that contains the name of the root directory 
@@ -18,7 +18,6 @@ app.use(timeout(120000));
 // initialize session
 app.use(session({
     //secret to sign the session ID cookie
-    id: 'nicholas.riccio@sapns2.com',
 	secret: 'N0Chance', 									
 	resave: true,
 	saveUninitialized: true
