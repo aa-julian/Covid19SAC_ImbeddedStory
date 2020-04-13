@@ -11,7 +11,11 @@ const PORT = process.env.PORT || 4000 ;
 var redirecturi = 'http://covid19-sac-analytics.herokuapp.com/callback'
 
 // __dirname is a global object that contains the name of the root directory 
-app.use(express.static(__dirname));
+//app.use(express.static(__dirname));
+
+app.use('/', (req, res) => {
+	res.redirect('/authorizationcode')
+})
 
 // request will be terminated after this duration [ms]:
 app.use(timeout(120000));
@@ -95,10 +99,6 @@ app.get('/logonresponse', function (req, res) {
 app.use("/getToken", function (req, res) {
 	res.send(JSON.stringify(req.session["tokens"].token));
 });
-
-app.get('/', (req,res) => {
-	res.redirect('/authorizationcode');
-})
 
 app.listen(PORT);
 app.timeout = 7800000;
