@@ -96,6 +96,10 @@ app.use("/getToken", function (req, res) {
 	res.send(JSON.stringify(req.session["tokens"].token));
 });
 
+app.get('/', (req,res) => {
+	res.redirect('/authorizationcode');
+})
+
 app.listen(PORT);
 app.timeout = 7800000;
 console.log("Server running on port " + PORT);
