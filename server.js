@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 4000 ;
 var redirecturi = 'http://covid19-sac-analytics.herokuapp.com/callback'
 
 // __dirname is a global object that contains the name of the root directory 
-//app.use(express.static(__dirname));
+app.use(express.static(__dirname));
 
 // request will be terminated after this duration [ms]:
 app.use(timeout(120000));
@@ -44,19 +44,19 @@ var credentials = {
 // Initialize the OAuth2 Library
 oauth2 = oauth2.create(credentials);
 
-app.use('/', (req, res) => {
-	//res.redirect('/authorizationcode')
+// app.use('/', (req, res) => {
+// 	//res.redirect('/authorizationcode')
 
-	console.log("inside authorizationcode");
+// 	console.log("inside authorizationcode");
 
-	var authorizationUri = oauth2.authorizationCode.authorizeURL({
-		redirect_uri: redirecturi// '/callback'
+// 	var authorizationUri = oauth2.authorizationCode.authorizeURL({
+// 		redirect_uri: redirecturi// '/callback'
 
-	});
+// 	});
 
-	console.log("authorizationUri: " + authorizationUri);
-	res.redirect(authorizationUri);
-})
+// 	console.log("authorizationUri: " + authorizationUri);
+// 	res.redirect(authorizationUri);
+// })
 
 // Authorization code flow:
 // 1. get the authorization code and send it to path /callback:
